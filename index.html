@@ -151,20 +151,57 @@
             <div class="row">
                 <h2 id="les_colonnes" class="text-primary text-decoration-underline text-center">IV- Les colonnes ou les champs</h2>
                 <div class="col-12 col-md-6 col-lg-4 bg-light">
-                    <p>Chaque table poss-de généralement plusieurs champs <code> (aussi appelées colonnes )</code>. les colonnes/champs représentent des caractéristiques relatives au sujet <code>(la table)</code></p>
+                    <p>Chaque table possède généralement plusieurs champs <code> (aussi appelées colonnes )</code>. les colonnes/champs représentent des caractéristiques relatives au sujet <code>(la table)</code></p>
                 </div>
                 <!-- fin col  -->
                 <div class="col-12 col-md-6 col-lg-4 bg-light">
                     <p>Pour savoir, quelle colonne mettre dans quelle table, il faut se poser la question suivante : qu'est-ce qui pourrait décrire mon sujet ? quelles sont les informations sur mon sujet ? <br>
                         Par exemple, la table membre aura les champs : pseudo, mot de passe, nom, prenom, adresse, email, etc.</p>          
                 </div>
-               
+               <!-- fin col  -->
             </div>
             <!-- fin row -->
 
             <div class="row">
-                <h2 id="les_types_de_donnees" class="text-primary text-decoration-underline text-center">V- Les types de données </h2>
-                
+                <h2 id="les_types_de_donnees" class="text-primary text-decoration-underline text-center">V- Les types de données</h2>
+                <div class="col-10 bg-light">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                          <tr>
+                            <th scope="col" class="text-danger">Type de champ</th>
+                            <th scope="col" class="text-danger">Description</th>
+                            <th scope="col" class="text-danger">Contexte</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="bg-info">
+                            <th scope="row" class="text-danger">VARCHAR</th>
+                            <td>Chaîne (jusqu'à 256 caractères)</td>
+                            <td>Pour enregistrer un pseudo, un email, le titre d'un produit ou d'un article de blog</td>
+                          </tr>
+                          <tr>
+                            <th scope="row" class="text-danger">TEXT</th>
+                            <td>Chaîne de caractère (illimité)</td>
+                            <td>Pour un contenu textuel long, un article de blog</td>
+                          </tr>
+                          <tr class="bg-info">
+                            <th scope="row" class="text-danger">INT</th>
+                            <td>Numérique</td>
+                            <td>Pour un identifiant, un prix, un code un code postal le nombre de produits en stocks etc.</td>
+                          </tr>
+                          <tr>
+                            <th scope="row" class="text-danger">DATE</th>
+                            <td>Date</td>
+                            <td>Pour la date d'un enregistrement (une inscription), la date d'une commande etc.</td>
+                          </tr>
+                          <tr class="bg-info">
+                            <th scope="row" class="text-danger">ENUM</th>
+                            <td>Une liste (une énumération)</td>
+                            <td>Pour proposer une liste de termes ex. : "Madame", "Monsieur"</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
             </div>
             <!-- fin row -->
 
@@ -175,31 +212,31 @@
 
             <div class="row">
                 <h2 id="les_cardinalites" class="text-primary text-decoration-underline text-center">VII- Les cardinalités </h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A, pariatur laborum explicabo, nesciunt tempora  voluptatibus.</p>
+                
             </div>
             <!-- fin row -->
 
             <div class="row">
                 <h2 id="table de jointure" class="text-primary text-decoration-underline text-center">VIII- Table de jointure </h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A, pariatur laborum explicabo, nesciunt tempora  voluptatibus.</p>
+                
             </div>
             <!-- fin row -->
 
             <div class="row">
                 <h2 id="clefs_etrangères" class="text-primary text-decoration-underline text-center">IX- Clefs étrangères ou FK</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A, pariatur laborum explicabo, nesciunt tempora  voluptatibus.</p>
+                
             </div>
             <!-- fin row -->
 
             <div class="row">
                 <h2 id="les_enregistrements" class="text-primary text-decoration-underline text-center">X- Les enrégistrements </h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A, pariatur laborum explicabo, nesciunt tempora  voluptatibus.</p>
+                
             </div>
             <!-- fin row -->
 
             <div class="row">
                 <h2 id="interroger_la_bdd" class="text-primary text-decoration-underline text-center">XI- Interroger la BDD</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A, pariatur laborum explicabo, nesciunt tempora  voluptatibus.</p>
+                
             </div>
             <!-- fin row -->
         </section>
