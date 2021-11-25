@@ -14,7 +14,19 @@
 9. Clefs étrangères ou FK
 10. Les enrégistrements
 11. Interroger la BDD
+
+
 ### 01_requetes.html
+1 - Base d'une BDD
+2 - Création d'une table
+3 - SELECT et DISTINCT
+4 - Les conditions 
+5 - Les Opérateurs de comparaison
+6 - ORDER BY
+7 - Limitation avec LIMIT 
+9 - Les conditions multiples 
+10 - Les regroupements
+
 ### 02_requetes.html
 ### 03_requetes_imbriquees.html
 ### 04_jointures.html

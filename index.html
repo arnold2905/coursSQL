@@ -115,7 +115,8 @@
         
             <div class="row">
                 <h2 id="modelisation" class="text-primary text-decoration-underline text-center">II- Modélisation</h2>
-                <div class="col-12 col-md-6 col-lg-4 bg-white">
+                <!-- col-12 col-md-6 col-lg-4 bg-white  -->
+                <div class="">
                     <ul>
                         <li>Avant de créer une BDD, il est primordial de réfléchir à la modélisation de la base: afin d'éviter de se tromper.</li> 
                         <li>Changer la modélisation d'une BDD en cours de projet n'est pas recommandé. Cela induit obligatoirement une réecriture des requêtes</li>
@@ -207,40 +208,141 @@
 
             <div class="row">
                 <h2 id="pk_ai_id" class="text-primary text-decoration-underline text-center">VI- Types de données PK AI pour les ID</h2>
-                
-            <!-- fin row -->
-
-            <div class="row">
-                <h2 id="les_cardinalites" class="text-primary text-decoration-underline text-center">VII- Les cardinalités </h2>
-                
+                <div class="col-md-6 bg-light">
+                    <h3>A/ PK- Primary Key , clef primaire</h3>
+                    <ul>
+                        <li>Les identifiants sont des champs ou des colonnes un peu particuliers car ils ne décrivent pas le sujet.Ils sont présents dans chaque table et systématiquement en première position.</li>
+                        <li>Les identifiants sont uniques.</li>
+                        <li>Chaque table possède un champ identifiant , nous appelons cela une clef primaire.</li>
+                        <li>Par ex. nous pourrons appeler le champ <code> "id" ou encore "id_membre" ou "idMembre" "id_user" pour la table "membre" ou "user"</code> </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h3>B/ Auto Increment , auto incrémenté</h3>
+                    <ul>
+                        <li>Auto incrémenté : option qui permet de générer un numéro unique dans une colonne ou un champ de type clef primaire(identifiant).</li>
+                        <li>Par conséquent,retenez que le premier champ dechaque table sera systématiquement <code>un "iD" qui sera PK et AI</code></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h3>C/ NULL, NOT NULL</h3>
+                    <ul>
+                        <li>Dans chaque champ nous pourrons indiquer si nous acceptons les valeurs <code>NULL ou NOT NULL</code></li>
+                        <li><code>NULL</code> est un type de valeur en informatiqueévitant de laisser un champ vide si nous n'avions pas d'information à y déposer</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h3>D/ Les relations </h3>
+                    <p>Il arrive parfois que les sujets interagissent entre eux: exemples</p>
+                    <ul>
+                        <li>Un mebre commande un produit ou un produit est commandé par un membre , nous devrons enrégistrer l'information dans une table</li>
+                        <li>Un conducteur conduit un véhicule ou un véhicule est conduit par un conducteur ; il faudrait une table permettant de faire le lien entre le conducteur et le type de véhicule qu'il conduit. </li>
+                    </ul>
+                </div>
             </div>
             <!-- fin row -->
 
             <div class="row">
-                <h2 id="table de jointure" class="text-primary text-decoration-underline text-center">VIII- Table de jointure </h2>
-                
+                <h2 id="les_cardinalites" class="text-primary text-decoration-underline text-center">VII- Les cardinalités </h2>
+                <div class="col-md-6">
+                    <ul>
+                        <li>Les cardinalités servent à connaître <code>le chiffre min et max </code> d'enrégistrement dans une relation</li>
+                        <li>Exemple: Un homme est le fils d'une d'une femme et une d'une seule <code>(min =1 et max = 1)</code><br>
+                        En revanche une femme peut n'avoir aucun enfant ou plusieurs <code>(min =0 et max = n)</code> </li>
+                        <li>Exemple 2: 1 livre possède forcément 1 auteur et qu'1 seul. Relation (1,1). Minimum 1 auteur, Maximum 1 auteur. 1 auteur peut avoir écrit plusieurs livre (ou aucun). Relation (0,n). Minimum 0 livre, Maximum N livres</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <figure>
+                        <img src="img/cardinalites.jpg" alt="Les cardinalités">
+                        <figcaption class="bg-light">Les cardinalités</figcaption>
+                    </figure>
+                </div>
+                <!-- fin col  -->
+            </div>
+            <!-- fin row -->
+
+            <div class="row">
+                <h2 id="table de jointure" class="text-primary text-decoration-underline text-center">VIII- Les Tables de jointure </h2>
+                <div class="col-md-6">
+                    <p>Une table de jointure permet de faire le lien entre deux tables au minimum.</p>
+                    <p>Exemple: Une société de taxi , qui possède des conducteurs et des véhicules.</p>
+                    <ul>
+                        <li>Un conducteur peut conduire 0 ou plusieurs véhicules </li>
+                        <li>Un véhicule peut être conduit par 0 ou plusizurs conducteurs.</li>
+                    </ul>
+                    <p>La table de jointure répond à la question : Comment savoir quel conducteur conduit quel véhicule ? ou Quel véhicule est conduit par quel conducteur?</p>
+                    <p>Avec cette table de jointure , nous savons qu'Alexandre conduit est autorisé à conduire la BMW et la Mercedes , et Julien ne pourrait conduire uniquement que la BMW</p>
+                </div>
+                <!-- fin col -->
+                <div class="col-md-6">
+                    <figure>
+                        <img src="img/jointures.jpg" alt="Table de jointures">
+                        <figcaption class="bg-light">La table de jointures</figcaption>
+                    </figure>
+                </div>
+                <!-- fin col  -->
             </div>
             <!-- fin row -->
 
             <div class="row">
                 <h2 id="clefs_etrangères" class="text-primary text-decoration-underline text-center">IX- Clefs étrangères ou FK</h2>
-                
+                <div class="col-md-3">
+                    <p>Les clefs étrangères sont des chmpas forcément clefs primaires dans leur table d'origine et qui se retrouve dans une table extérieure.</p>
+                    <p>Un champ clé étrangère permet de faire la relation avec un autre sujet.</p>
+                </div>
+                <!-- fin col  -->
+                <div class="col-md-4">
+                    <figure>
+                        <img src="img/clef_etrangere_2.jpg" alt="Table de jointures">
+                        <figcaption class="bg-light">Les Jointures</figcaption>
+                    </figure>
+                </div>
+                <div class="col-md-4">
+                    <figure>
+                        <img src="img/clef_etrangere_1.jpg" alt="Table de jointures">
+                        <figcaption class="bg-light">Les tables d'origine des clés étrangères</figcaption>
+                    </figure>
+                </div>
+                <!-- fin col  -->
             </div>
             <!-- fin row -->
 
             <div class="row">
                 <h2 id="les_enregistrements" class="text-primary text-decoration-underline text-center">X- Les enrégistrements </h2>
-                
+                <div class="col-md-12">
+                    <p> Chaque enrégistrement représente une ligne dans la table de la BDD. Chaque nouvel enrégistrement va s'autoincrémenter. <code>Un "iD" supprimé ne sera pas réutilisé !</code></p>
+                </div>
             </div>
             <!-- fin row -->
 
             <div class="row">
                 <h2 id="interroger_la_bdd" class="text-primary text-decoration-underline text-center">XI- Interroger la BDD</h2>
-                
+                <div class="col-md-4">
+                    <h3>Les requêtes</h3>
+                    <p>Une requête permet de poser une question afin d'obtenir une réponse ou encore de donner un ordre.</p>
+                    <p>Nous terminerons toutes nos requêtes SQL par <code>un point-virgule (;) </code> pour que MySQL sache que nous avons terminé d'écrire et qu'il doit exécuter notre demande.</p>
+                    <p>De manière standard, les requêtes SQL seront écrites en majuscules <code>SELECT * FROM membre;</code></p>
+                </div>
+                <!-- fin col  -->
+
+                <div class="col-md-8">
+                    <h3>Types de requêtes</h3>
+                    <p>Il existe 4 types de requêtes:</p>
+                    <ul>
+                        <li>Sélection <code>SELECT</code>; requête question/réponse , nous demandons et obtenons une réponse</li>
+                        <li>Insertion<code>INSERT</code>; requête d'action , qui aura un impact sur les données </li>
+                        <li>Modification<code>UPDATE</code>;requête d'action , qui aura un impact sur les données(mise à jour)</li>
+                        <li>Suppression<code>DELETE</code>;requête d'action , qui aura un impact sur les données (supprimer)</li>
+                    </ul>
+                </div>
+                <!-- fin col  -->
             </div>
             <!-- fin row -->
         </section>
+        <!-- fin section  -->
     </main>
+    <!-- fin container  -->
     
     <!-- Optional JavaScript -->
     <!-- Bootstrap Bundle with Popper -->
