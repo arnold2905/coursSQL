@@ -29,6 +29,15 @@
     </header>
 
     <section class="container mb-4 bg-light">
+
+        <div class="row">
+            <div>
+                <figure class="">
+                    <img src="img/designer.png" alt="La table clés étrangères">
+                    <figcaption>La table clés étrangères</figcaption>
+                </figure>
+            </div>
+        </div>
         <div class="row">
             <h2> 1- <code>Création de la BDD "bibliothèque"</code></h2>
             <div class="col-md-6">
@@ -41,7 +50,7 @@
 
             <div class="col-md-6">
                <ul>
-                   <li>Création de la table abonné en SQL : <code>CREATE TABLE abonne (
+                   <li class="alert alert-info">Création de la table abonné en SQL : <code>CREATE TABLE abonne (
                     id_abonne INT(3) NOT NULL AUTO_INCREMENT,
                     prenom VARCHAR(20) NOT NULL,
                     PRIMARY KEY (id_abonne)
@@ -53,38 +62,103 @@
         </div>    
         <!-- fin row  -->
 
-        <div class="row">
-            <h2> 2- <code>Création de la BDD "emprunt"</code></h2>
-            <div class="col-md-6">
+        <div class="row border border-primary border-5">
+            <h2> 2- <code>Création de la BDD: "emprunt"</code></h2>
+            <div class="col-md-4">
                 <figure>
-                    <img src="img/emprunt.png" alt="La table emprunt">
+                    <img style="width: 400px;" src="img/emprunt.png" alt="La table emprunt">
                     <figcaption>La table emprunt</figcaption>
                 </figure>
             </div>
             <!-- fin col  -->
 
-            <div class="col-md-6">
-               
+            <div class="col-md-4">
+                <figure>
+                    <img style="width: 400px;" src="img/contenu_emprunt.jpg" alt="La table emprunt">
+                    <figcaption>La table emprunt</figcaption>
+                </figure>
+            </div>
+            <!-- fin col  -->
+
+            <div class="col-md-4">
+               <ul>
+                   <li class="alert alert-info">Création de la table emprunt: <code>INSERT INTO emprunt (id_emprunt, id_livre, id_abonne, date_sortie, date_rendu) VALUES
+                    (1, 100, 1, '2014-12-17', '2014-12-18'),
+                    (2, 101, 2, '2014-12-18', '2014-12-20'),
+                    (3, 100, 3, '2014-12-19', '2014-12-22'),
+                    (4, 103, 4, '2014-12-19', '2014-12-22'),
+                    (6, 105, 2, '2015-03-20', '2015-03-26'),
+                    (7, 105, 3, '2015-06-13', NULL),
+                    (8, 100, 2, '2015-06-15', NULL)</code></li>
+                    <li> <code>DESCRIBE emprunt;</code></li>
+               </ul>
             </div>
             <!-- fin col  -->
         </div>    
         <!-- fin row  -->
 
         <div class="row">
-            <h2> 3- <code>Création de la BDD "livre"</code></h2>
-            <div class="col-md-6">
+            <h2 class="text-decoration-underline"> 3- <code>Création de la BDD "livre"</code></h2>
+            <div class="col-md-4">
                 <figure>
-                    <img src="img/livre.png" alt="La table livre">
+                    <img style="width: 400px;" src="img/livre.png" alt="La table livre">
                     <figcaption>La table livre</figcaption>
                 </figure>
             </div>
             <!-- fin col  -->
 
-            <div class="col-md-6">
-               
+            <div class="col-md-4">
+                <figure>
+                    <img style="width: 400px;" src="img/contenu_livre.jpg" alt="La table livre">
+                    <figcaption>La table livre</figcaption>
+                </figure>
+            </div>
+            <!-- fin col  -->
+
+            <div class="col-md-4">
+                <ul>
+                    <li class="alert alert-info">Création de la table livre: <code>INSERT INTO livre (id_livre, auteur, titre) VALUES
+                        (100, 'GUY DE MAUPASSANT', 'Une vie'),
+                        (101, 'GUY DE MAUPASSANT', 'Bel-Ami '),
+                        (102, 'HONORE DE BALZAC', 'Le père Goriot'),
+                        (103, 'ALPHONSE DAUDET', 'Le Petit chose'),
+                        (104, 'ALEXANDRE DUMAS', 'La Reine Margot'),
+                        (105, 'ALEXANDRE DUMAS', 'Les Trois Mousquetaires')</code></li>
+                </ul>
             </div>
             <!-- fin col  -->
         </div>    
+        <!-- fin row  -->
+
+        <div class="row">
+            <h2>2 -<code>SELECT sur plusieurs tables</code></h2>
+            <div class="col-md-3">
+                <ul>
+                    <li><code>SELECT * FROM abonné;</code></li>
+                    <li><code>SELECT * FROM livre;</code></li>
+                    <li><code>SELECT * FROM emprunt;</code></li>
+                </ul>
+                <hr>
+            </div>
+            <!-- fin col  -->
+                
+            <div class="col-md-9">
+                <!-- ul>li*11{ : }>code -->
+                <ul>
+                    <li class="alert alert-success">On cherche les livres qui n'ont pas été rendus : <code>SELECT * FROM emprunt WHERE date_rendu IS NULL;</code> attention cas particulier <code>la valeur NULL se teste avec avec le mot clef IS !</code></li>
+                    <li class="alert alert-warning"> Quels sont les titres des livres non rendus ? : <code>SELECT * FROM livre WHERE id_livre IN (SELECT id_livre FROM emprunt WHERE date_rendu IS NULL);</code> <code> Explication: nous cherchons des informations dans les tables "livre" et "emprunt", la requ^te entre parenthèses s'exécute en premier, et nous donne l'id des livres de la table "emprunt" , puis nous demandons les titres des livres correspondant aux id des livres de la première requête.</code> </li>
+                    <li class="alert alert-info">:  <code>Attention! Pour qu'une requête imbriquée sur 3 tables soit possible , il faut absolument qu'une information soit commune aux 2 tables : ici l'id_livre !! Le champ id_livre nous sert à joindre et faire correspondre les informations. </code></li>
+                    <li class="alert alert-danger"> Afficher le nom des abonnés ayant emprunté un livre le 19-12-2014: <code>SELECT * FROM abonne WHERE id_abonne IN(SELECT id_abonne FROM emprunt WHERE date_sortie = '2014-12-19');</code></li>
+                    <li class="alert alert-primary"> Afficher les abonnés ayant emprunté un livre d'Alphonse Daudet: <code>SELECT prenom FROM abonne WHERE id_abonne IN(SELECT id_abonne FROM emprunt WHERE id_livre IN(SELECT id_livre FROM livre WHERE auteur ='Alphonse Daudet'));</code> <br> Commentaire (Explication):<code>La dernière requête s'exécute en premier et nous sort de la table "livre" les "id" des livres de Daudet; puis la requête du mileu nous sort les "id" des abonnés ayant emprunté le ou les livres de Daudet; et enfin , la première requête nous donne leur prénom </code></li>
+                    <li class="alert alert-success">Afficher le(s) titres du ou des livre(s) emprunté par Chloé: <code>SELECT titre FROM livre WHERE id_livre IN(SELECT id_livre FROM emprunt WHERE id_abonne =(SELECT id_abonne FROM abonne WHERE prenom ='Chloe'));</code></li>
+                    <li class="alert alert-warning">Afficher le(s) titres du ou des livre(s) que Chloé n'a pas emprunté:<code> SELECT titre FROM livre WHERE id_livre NOT IN(SELECT id_livre FROM emprunt WHERE id_abonne =(SELECT id_abonne FROM abonne WHERE prenom ='Chloe'));</code></li>
+                    <li class="alert alert-info"> Afficher le nombre de livres que Chloé n'a pas rendu: <code>SELECT titre FROM livre WHERE id_livre IN(SELECT id_livre FROM emprunt WHERE date_rendu IS NULL AND id_abonne =(SELECT id_abonne FROM abonne WHERE prenom ='Chloe'));</code></li>
+                    <li>Combien de livre(s) a emprunté Guillaume : <code>SELECT COUNT(*) AS 'nombre de livre' FROM emprunt WHERE id_abonne =(SELECT id_abonne FROM abonne WHERE prenom='guillaume');</code></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- fin col  -->
+        </div>
         <!-- fin row  -->
 
             
