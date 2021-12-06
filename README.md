@@ -44,3 +44,7 @@
 2- SELECT sur plusieurs tables
     
 ### 04_jointures.html
+1- Définition
+    a- Récap
+2- Exemples
+
