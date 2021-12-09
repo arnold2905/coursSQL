@@ -184,15 +184,52 @@
                         <li>Quels sont les id des logements entre 20 et 30m²?:<code>SELECT *
                             FROM logement
                             WHERE superficie>= 20 AND superficie<=30; </code></li>
-                        <li>Quel est le prix vendeur(hors commission) du logement le moins cher à vendre?<code>SELECT * FROM logement WHERE categorie = 'vente' ORDER BY prix ASC LIMIT 0,1</code></li>
+                        <li>Quel est le prix vendeur(hors commission) du logement le moins cher à vendre?<code>SELECT * 
+                            FROM logement 
+                            WHERE categorie = 'vente' 
+                            ORDER BY prix 
+                            ASC LIMIT 0,1</code></li>
                         <li>Quel est le prix vendeur(hors commission) du logement le moins cher à vendre? :<code>SELECT MIN(prix), idLogement, categorie
                             FROM logement 
                             WHERE categorie = 'vente'</code></li>
-                        <li>Dans quelle ville se trouvent les maisons à vendre ?<code></code></li>
+                        <li>Dans quelle ville se trouvent les maisons à vendre ?<code>SELECT DISTINCT(ville)
+                            FROM logement 
+                            WHERE genre='maison' 
+                            AND categorie ='vente'</code></li>
+                        <li> <code>SELECT ville 
+                            FROM logement 
+                            WHERE categorie = 'vente' 
+                            AND genre = 'appartement' 
+                            GROUP By ville</code>
+                        </li>
                         <li>L'agence Orpi souhaite diminuer les frais qu'elle applique sur le logement ayant l'id « 5246 ». Passer les frais de ce logement de 800 à 730€<code></code></li>
-                        <li>Quels sont les logements gérés par l'agence « laforet »<code></code></li>
-                        <li>Affichez le nombre de propriétaires dans la ville de Paris (Alias : Nombre propriétaire parisien)<code></code></li>
-                        <li>Afficher les infos des trois premières personnes souhaitant acheter un logement<code></code></li>
+                        <li>L'agence Orpi souhaite diminuer les frais qu'elle applique sur le logement ayant l'id « 5246 ». Passer les frais de ce logement de 800 à 730€<<code>UPDATE logement_agence 
+                            SET frais ='1200000' 
+                            WHERE idLogement = '5246' 
+                            AND idAgence = (SELECT idAgence FROM agence WHERE nom ='orpi')</code>
+                        </li>
+                        <li>Quels sont les logements gérés par l'agence « laforet »<code>SELECT idLogement FROM logement_agence WHERE idAgence=(SELECT idAgence FROM agence WHERE nom = 'laforet')</code></li>
+                        <li>Quels sont les logements gérés par l'agence « laforet » <code>SELECT * 
+                            FROM logement_agence 
+                            WHERE idAgence =
+                            (SELECT idAgence 
+                            FROM agence 
+                            WHERE nom = 'laforet')</code>
+                        </li>
+                        <li>Affichez le nombre de propriétaires dans la ville de Paris (Alias : Nombre propriétaire parisien)<code>SELECT COUNT(idLogement) AS 'nbr proprio' FROM logement WHERE ville='paris'</code></li>
+                        <li>Affichez le nombre de propriétaires dans la ville de Paris (Alias : Nombre propriétaire parisien) <code>SELECT COUNT(DISTINCT(logement_personne.idPersonne))
+                            AS 'nombre de proprietaires parisiens'
+                            FROM logement_personne , logement
+                            WHERE logement_personne.idLogement = logement.idLogement
+                            AND logement.ville='paris'</code>
+                        </li>
+                        <li>Afficher les infos des trois premières personnes souhaitant acheter un logement<code>SELECT * 
+                            FROM personne, demande 
+                            WHERE personne.idPersonne = demande.idPersonne 
+                            AND demande.categorie = 'vente' 
+                            ORDER BY demande.idDemande 
+                            LIMIT 0,3</code>
+                        </li>
                     </ul>
                 </div>
             </div>
