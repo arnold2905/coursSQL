@@ -230,6 +230,58 @@
                             ORDER BY demande.idDemande 
                             LIMIT 0,3</code>
                         </li>
+                        <li>Requête de jointure: Afficher le prénom du vendeur du '5770'<code>SELECT personne.prenom, logement_personne.idLogement, logement.ville, logement.superficie, logement.genre, agence.nom
+                            FROM personne, logement_personne, logement, agence, logement_agence
+                            WHERE personne.idPersonne = logement_personne.idPersonne
+                            AND logement_personne.idLogement = logement.idLogement
+                            AND logement_personne.idLogement = logement_agence.idLogement
+                            AND agence.idAgence = logement_agence.idAgence
+                            AND logement_personne.idLogement = 5770</code>
+                        </li>
+
+                        <li>Requête de jointure: Afficher le prénom du vendeur du '5770': avec 3 tables<code>SELECT personne.prenom, logement_personne.idLogement, logement.ville, logement.genre
+                            FROM personne, logement_personne, logement
+                            WHERE personne.idPersonne = logement_personne.idPersonne
+                            AND logement.idLogement = logement_personne.idLogement
+                            AND logement_personne.idLogement = 5770</code>
+                        </li>
+
+                        <li>Affichez les prénoms des personnes souhaitant avoir un logement à Lyon<code>SELECT personne.prenom, demande.ville
+                            FROM personne, demande
+                            WHERE personne.idPersonne = demande.idPersonne
+                            AND demande.ville = 'lyon'</code>
+                        </li>
+                        <li>Affichez les prénoms des personnes souhaitant accéder à un logement en location à Paris<code>SELECT personne.prenom , demande.ville ,demande.categorie 
+                            FROM personne ,demande 
+                            WHERE personne.idPersonne = demande.idPersonne 
+                            AND demande.ville = 'Paris' 
+                            AND demande.categorie = 'location';</code>
+                        </li>
+                        <li>Affichez les prénoms des personnes souhaitant acheter un logement de la plus grande à la plus petite superficie<code>SELECT personne.prenom, personne.idPersonne, demande.superficie
+                            FROM personne, demande
+                            WHERE personne.idPersonne = demande.idPersonne
+                            AND demande.categorie = 'vente'
+                            ORDER BY demande.superficie DESC</code>
+                        </li>
+                        <li>Quel sont les prix finaux proposés par les agences pour la maison à la vente ayant la référence « 5091 » ? (Alias :  frais d'agence inclus)<code>SELECT agence.nom, (logement_agence.frais+logement.prix)
+                            AS 'prix finaux' 
+                            FROM agence, logement_agence, logement
+                            WHERE agence.idAgence = logement_agence.idAgence
+                            AND logement_agence.idLogement = logement.idLogement
+                            AND logement_agence.idLogement = '5091'</code>
+                        </li>
+
+                        <li>Quel sont les prix finaux proposés par les agences pour la maison à la vente ayant la référence « 5091 » ? (Alias :  frais d'agence inclus)<code>SELECT (logement.prix + logement_agence.frais) <br>
+                            AS 'prix_final', logement.prix, logement.categorie <br>
+                            FROM logement, logement_agence <br>
+                            WHERE logement_agence.idLogement = logement.idLogement <br>
+                            AND logement_agence.idLogement = '5091'</code> <br></code>
+                        </li>
+
+                        <li>Quel sont les prix finaux proposés par les agences pour la maison à la vente ayant la référence « 5091 » ? (Alias :  frais d'agence inclus)<code>SELECT (logement.prix + logement_agence.frais) AS 'Prix Finaux', logement.categorie, logement.ville, logement.prix, logement_agence.frais
+                            FROM logement, logement_agence
+                            WHERE logement.idLogement = logement_agence.idLogement
+                            AND logement_agence.idLogement = '5091'</code></li>
                     </ul>
                 </div>
             </div>
