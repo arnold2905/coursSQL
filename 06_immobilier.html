@@ -278,10 +278,27 @@
                             AND logement_agence.idLogement = '5091'</code> <br></code>
                         </li>
 
-                        <li>Quel sont les prix finaux proposés par les agences pour la maison à la vente ayant la référence « 5091 » ? (Alias :  frais d'agence inclus)<code>SELECT (logement.prix + logement_agence.frais) AS 'Prix Finaux', logement.categorie, logement.ville, logement.prix, logement_agence.frais
+                        <li>Quel sont les prix finaux proposés par les agences pour la maison à la vente ayant la référence « 5091 » ? (Alias :  frais d'agence inclus)<code>SELECT (logement.prix + logement_agence.frais) 
+                            AS 'Prix Finaux', logement.categorie, logement.ville, logement.prix, logement_agence.frais
                             FROM logement, logement_agence
                             WHERE logement.idLogement = logement_agence.idLogement
                             AND logement_agence.idLogement = '5091'</code></li>
+
+                        <li>Indiquez les frais ajoutés par l'agence pour le logement ID 5873<code>SELECT logement_agence.frais
+                            FROM logement_agence, logement
+                            WHERE logement_agence.idLogement = logement.idLogement
+                            AND logement_agence.idLogement = '5873'</code>
+                        </li>   
+                        
+                        <li>Si l’ensemble des logements étaient vendus ou loués demain, quel serait le bénéfice généré grâce aux frais d’agence et pour chaque agence
+                            (Alias : benefice, classement : par ordre croissant des gains) // tables agence et logement_agence // SUM() // GROUP BY et ORDER<code>SELECT agence.nom, SUM(logement_agence.frais) AS 'benefice'
+                                FROM agence, logement_agence
+                                WHERE agence.idAgence = logement_agence.idAgence
+                                GROUP BY agence.idAgence
+                                ORDER BY benefice ASC</code>
+                        </li>
+                        
+                        <li>Affichez les id des biens en location, les prix, suivis des frais d’agence (classement : dans l’ordre croissant des prix)<code></code></li>
                     </ul>
                 </div>
             </div>
